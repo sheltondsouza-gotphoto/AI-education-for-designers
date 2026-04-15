@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Workshop · Session 1 · GotPhoto</title>
+  <meta name="description" content="Session 1 reference guide: 10 topics, quick commands, and activities for the GotPhoto AI Workshop series.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+          },
+          colors: {
+            navy: {
+              950: '#080C1C',
+              900: '#0D1129',
+              800: '#111629',
+              700: '#1B2251',
+              600: '#252E6A',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    .topic-card {
+      transition: transform 150ms ease-out;
+    }
+    .topic-card:hover {
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body class="bg-navy-900 text-white font-sans antialiased min-h-dvh">
+
+  <!-- Skip link -->
+  <a href="#main"
+     class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#5B7FFF] focus:text-white focus:rounded-lg focus:font-semibold focus:shadow-lg">
+    Skip to main content
+  </a>
+
+  <!-- ══════════════════════════════════════════
+       HEADER
+  ══════════════════════════════════════════ -->
+  <header class="sticky top-0 z-40 border-b border-white/[0.07] bg-navy-900/90 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+
+      <div class="flex items-center gap-4">
+        <img src="../../../GotPhoto Logo.svg"
+             alt="GotPhoto"
+             height="28"
+             class="h-7 w-auto">
+        <span class="h-4 w-px bg-white/15 hidden sm:block" aria-hidden="true"></span>
+        <span class="text-sm text-slate-400 font-medium hidden sm:block">AI Workshop</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-semibold tracking-wide text-slate-300 bg-navy-700 border border-white/10 px-3 py-1.5 rounded-full">
+          Session 1 · Intro
+        </span>
+        <span class="text-xs text-slate-600 hidden sm:inline">April 2026</span>
+      </div>
+
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ══════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════ -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 pt-16 pb-12">
+      <p class="text-xs font-bold tracking-[0.25em] uppercase text-[#5B7FFF] mb-5">
+        Session 1 of 5
+      </p>
+      <h1 class="text-4xl sm:text-[3.25rem] font-bold leading-[1.1] tracking-tight text-white mb-5 max-w-2xl">
+        Building with AI
+      </h1>
+      <p class="text-base sm:text-lg text-slate-400 leading-relaxed max-w-xl mb-8">
+        Your reference guide for the tools and concepts behind AI-assisted development.
+        Keep this open during the session.
+      </p>
+      <nav class="flex flex-wrap gap-3" aria-label="Jump to section">
+        <a href="#topics"
+           class="inline-flex items-center gap-2 bg-[#5B7FFF] hover:bg-[#7090FF] text-white font-semibold text-sm px-5 py-2.5 rounded-lg transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5B7FFF] focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900">
+          10 Topics <span aria-hidden="true">↓</span>
+        </a>
+        <a href="#commands"
+           class="inline-flex items-center gap-2 border border-white/15 hover:border-white/30 text-slate-200 hover:text-white font-medium text-sm px-5 py-2.5 rounded-lg transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900">
+          Quick Commands
+        </a>
+        <a href="#activities"
+           class="inline-flex items-center gap-2 border border-white/15 hover:border-white/30 text-slate-200 hover:text-white font-medium text-sm px-5 py-2.5 rounded-lg transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900">
+          Activities
+        </a>
+      </nav>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         TOPICS
+    ══════════════════════════════════════════ -->
+    <section id="topics" class="max-w-6xl mx-auto px-4 sm:px-6 pb-16" aria-labelledby="topics-heading">
+      <div class="flex items-baseline gap-3 mb-7">
+        <h2 id="topics-heading" class="text-xl font-bold text-white">Topics</h2>
+        <span class="text-sm text-slate-600">10 concepts</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+
+        <!-- 1. IDE & Markdown — Dev Tools → blue #5B7FFF -->
+        <article class="topic-card relative bg-navy-700/50 border border-white/[0.07] rounded-xl p-5 pl-6 overflow-hidden">
+          <div class="absolute left-0 top-5 bottom-5 w-[3px] bg-[#5B7FFF] rounded-full" aria-hidden="true"></div>
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#5B7FFF] mb-2">Dev Tools</p>
+          <h3 class="font-semibold text-white mb-1.5">IDE & Markdown</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Your coding home base. VS Code shows your files, runs code, and integrates AI assistants.
+            Markdown (.md) is plain text with light formatting — the language AI reads natively.
+          </p>
+        </article>
+
+        <!-- 2. Terminal — Dev Tools → blue -->
+        <article class="topic-card relative bg-navy-700/50 border border-white/[0.07] rounded-xl p-5 pl-6 overflow-hidden">
+          <div class="absolute left-0 top-5 bottom-5 w-[3px] bg-[#5B7FFF] rounded-full" aria-hidden="true"></div>
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#5B7FFF] mb-2">Dev Tools</p>
+          <h3 class="font-semibold text-white mb-1.5">The Terminal (CLI)</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Text interface to your computer. Faster than clicking.
+            <code class="font-mono text-xs text-slate-300 bg-navy-900/70 px-1.5 py-0.5 rounded">cd</code> navigates,
+            <code class="font-mono text-xs text-slate-300 bg-navy-900/70 px-1.5 py-0.5 rounded">ls</code> lists files,
+            <code class="font-mono text-xs text-slate-300 bg-navy-900/70 px-1.5 py-0.5 rounded">mkdir</code> creates folders.
+          </p>
+        </article>
+
+        <!-- 3. React / Next.js / TS — Web Dev → emerald #34D399 -->
+        <article class="topic-card relative bg-navy-700/50 border border-white/[0.07] rounded-xl p-5 pl-6 overflow-hidden">
+          <div class="absolute left-0 top-5 bottom-5 w-[3px] bg-[#34D399] rounded-full" aria-hidden="true"></div>
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#34D399] mb-2">Web Dev</p>
+          <h3 class="font-semibold text-white mb-1.5">React / Next.js / TS</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            React builds UIs from reusable components — like Figma components but in code.
+            Next.js adds routing and server features. TypeScript adds type safety so AI makes fewer mistakes.
+          </p>
+        </article>
+
+        <!-- 4. Tailwind — UI/UX → pink #F472B6 -->
+        <article class="topic-card relative bg-navy-700/50 border border-white/[0.07] rounded-xl p-5 pl-6 overflow-hidden">
+          <div class="absolute left-0 top-5 bottom-5 w-[3px] bg-[#F472B6] rounded-full" aria-hidden="true"></div>
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#F472B6] mb-2">UI / UX</p>
+          <h3 class="font-semibold text-white mb-1.5">Tailwind CSS</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Design via utility classes in HTML.
+            <code class="font-mono text-xs text-slate-300 bg-navy-900/70 px-1.5 py-0.5 rounded">p-4 text-white rounded-lg</code>
+            — like Figma's Auto Layout constraints written directly in markup.
+          </p>
+        </article>
+
+        <!-- 5. Local Environment — Dev Tools → blue -->
+        <article class="topic-card relative bg-navy-700/50 border border-white/[0.07] rounded-xl p-5 pl-6 overflow-hidden">
+          <div class="absolute left-0 top-5 bottom-5 w-[3px] bg-[#5B7FFF] rounded-full" aria-hidden="true"></div>
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#5B7FFF] mb-2">Dev Tools</p>
+          <h3 class="font-semibold text-white mb-1.5">Local Environment</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Run your app on your own machine before publishing.
+            <code class="font-mono text-xs text-slate-300 bg-navy-900/70 px-1.5 py-0.5 rounded">localhost:3000</code>
+            is your private preview — only you can see it until you deploy.
+          </p>
+        </article>
+
+        <!-- 6. Versioning — Version Control → orange #FB923C -->
+        <article class="topic-card relative bg-navy-700/50 border border-white/[0.07] rounded-xl p-5 pl-6 overflow-hidden">
+          <div class="absolute left-0 top-5 bottom-5 w-[3px] bg-[#FB923C] rounded-full" aria-hidden="true"></div>
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#FB923C] mb-2">Version Control</p>
+          <h3 class="font-semibold text-white mb-1.5">Versioning</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Every saved state of your project lives in history. Nothing is truly deleted.
+            Branches let you experiment without touching the main working version.
+          </p>
+        </article>
+
+        <!-- 7. Git Basics — Version Control → orange -->
+        <article class="topic-card relative bg-navy-700/50 border border-white/[0.07] rounded-xl p-5 pl-6 overflow-hidden">
+          <div class="absolute left-0 top-5 bottom-5 w-[3px] bg-[#FB923C] rounded-full" aria-hidden="true"></div>
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#FB923C] mb-2">Version Control</p>
+          <h3 class="font-semibold text-white mb-1.5">Git Basics</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            The version control engine. Commit = save a snapshot. Branch = parallel version.
+            Merge = combine work. Push = upload to GitHub.
+          </p>
+        </article>
+
+        <!-- 8. GitHub Desktop — Version Control → orange -->
+        <article class="topic-card relative bg-navy-700/50 border border-white/[0.07] rounded-xl p-5 pl-6 overflow-hidden">
+          <div class="absolute left-0 top-5 bottom-5 w-[3px] bg-[#FB923C] rounded-full" aria-hidden="true"></div>
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#FB923C] mb-2">Version Control</p>
+          <h3 class="font-semibold text-white mb-1.5">GitHub Desktop</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Git with a visual interface. See your changes, write commit messages, push to GitHub —
+            no terminal required. Best starting point for non-engineers.
+          </p>
+        </article>
+
+        <!-- 9. APIs & REST — Web Dev → emerald -->
+        <article class="topic-card relative bg-navy-700/50 border border-white/[0.07] rounded-xl p-5 pl-6 overflow-hidden">
+          <div class="absolute left-0 top-5 bottom-5 w-[3px] bg-[#34D399] rounded-full" aria-hidden="true"></div>
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#34D399] mb-2">Web Dev</p>
+          <h3 class="font-semibold text-white mb-1.5">APIs & REST</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            How apps exchange data. GET fetches. POST creates. Like a waiter — you send a request,
+            the server sends back a JSON response. Claude itself is accessed via API.
+          </p>
+        </article>
+
+        <!-- 10. MCP — AI → purple #A78BFA -->
+        <article class="topic-card relative bg-navy-700/50 border border-white/[0.07] rounded-xl p-5 pl-6 overflow-hidden">
+          <div class="absolute left-0 top-5 bottom-5 w-[3px] bg-[#A78BFA] rounded-full" aria-hidden="true"></div>
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#A78BFA] mb-2">AI</p>
+          <h3 class="font-semibold text-white mb-1.5">MCP Protocol</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Claude's plugin system. Connects AI to local files, Figma, Slack, or databases.
+            Write it once and Claude reads your design files directly — no copy-pasting.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         QUICK COMMANDS
+    ══════════════════════════════════════════ -->
+    <section id="commands" class="max-w-6xl mx-auto px-4 sm:px-6 pb-16" aria-labelledby="commands-heading">
+      <div class="flex items-baseline gap-3 mb-7">
+        <h2 id="commands-heading" class="text-xl font-bold text-white">Quick Commands</h2>
+        <span class="text-sm text-slate-600">Terminal reference</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+        <!-- Navigation -->
+        <div class="bg-navy-800 border border-white/[0.06] rounded-xl p-5">
+          <h3 class="text-xs font-semibold tracking-[0.15em] uppercase text-slate-500 mb-4">Navigation</h3>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#5B7FFF] bg-navy-950 px-3 py-1.5 rounded-lg w-[148px] shrink-0">cd folder</code>
+              <span class="text-sm text-slate-400">Enter a folder</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#5B7FFF] bg-navy-950 px-3 py-1.5 rounded-lg w-[148px] shrink-0">cd ..</code>
+              <span class="text-sm text-slate-400">Go up one level</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#5B7FFF] bg-navy-950 px-3 py-1.5 rounded-lg w-[148px] shrink-0">ls</code>
+              <span class="text-sm text-slate-400">List files in folder</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#5B7FFF] bg-navy-950 px-3 py-1.5 rounded-lg w-[148px] shrink-0">pwd</code>
+              <span class="text-sm text-slate-400">Show current path</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#5B7FFF] bg-navy-950 px-3 py-1.5 rounded-lg w-[148px] shrink-0">mkdir name</code>
+              <span class="text-sm text-slate-400">Create new folder</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Git -->
+        <div class="bg-navy-800 border border-white/[0.06] rounded-xl p-5">
+          <h3 class="text-xs font-semibold tracking-[0.15em] uppercase text-slate-500 mb-4">Git</h3>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#FB923C] bg-navy-950 px-3 py-1.5 rounded-lg w-[148px] shrink-0">git status</code>
+              <span class="text-sm text-slate-400">What changed?</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#FB923C] bg-navy-950 px-3 py-1.5 rounded-lg w-[148px] shrink-0">git add .</code>
+              <span class="text-sm text-slate-400">Stage all changes</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#FB923C] bg-navy-950 px-3 py-1.5 rounded-lg w-[148px] shrink-0">git commit -m</code>
+              <span class="text-sm text-slate-400">Save a snapshot</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#FB923C] bg-navy-950 px-3 py-1.5 rounded-lg w-[148px] shrink-0">git push</code>
+              <span class="text-sm text-slate-400">Upload to GitHub</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#FB923C] bg-navy-950 px-3 py-1.5 rounded-lg w-[148px] shrink-0">git clone URL</code>
+              <span class="text-sm text-slate-400">Download a repo</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         ACTIVITIES
+    ══════════════════════════════════════════ -->
+    <section id="activities" class="max-w-6xl mx-auto px-4 sm:px-6 pb-20" aria-labelledby="activities-heading">
+      <div class="flex items-baseline gap-3 mb-7">
+        <h2 id="activities-heading" class="text-xl font-bold text-white">Activities</h2>
+        <span class="text-sm text-slate-600">Hands-on</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+        <!-- Activity 1: GitHub Page (async) -->
+        <div class="bg-navy-700/40 border border-white/[0.07] rounded-xl p-5">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-7 h-7 rounded-full bg-white/10 text-slate-400 text-sm font-bold flex items-center justify-center shrink-0"
+                 aria-label="Activity 1">1</div>
+            <h3 class="font-semibold text-white">GitHub Page</h3>
+            <span class="text-[11px] font-medium text-slate-500 bg-white/5 border border-white/10 px-2 py-0.5 rounded-full ml-auto">Async</span>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">
+            Create your personal GitHub page at
+            <code class="font-mono text-xs text-slate-300 bg-navy-900/70 px-1.5 py-0.5 rounded">username.github.io</code>.
+            Live on the web in minutes.
+          </p>
+          <ol class="text-xs text-slate-500 space-y-1.5 list-decimal list-inside">
+            <li>Create repo named <code class="font-mono bg-navy-900/70 px-1 rounded text-slate-400">username.github.io</code></li>
+            <li>Add an <code class="font-mono bg-navy-900/70 px-1 rounded text-slate-400">index.html</code></li>
+            <li>Enable Pages in repo Settings</li>
+          </ol>
+        </div>
+
+        <!-- Activity 2: Folder Structure (async) -->
+        <div class="bg-navy-700/40 border border-white/[0.07] rounded-xl p-5">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-7 h-7 rounded-full bg-white/10 text-slate-400 text-sm font-bold flex items-center justify-center shrink-0"
+                 aria-label="Activity 2">2</div>
+            <h3 class="font-semibold text-white">Folder Structure</h3>
+            <span class="text-[11px] font-medium text-slate-500 bg-white/5 border border-white/10 px-2 py-0.5 rounded-full ml-auto">Async</span>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">
+            Set up your first AI-ready project folder with
+            <code class="font-mono text-xs text-slate-300 bg-navy-900/70 px-1.5 py-0.5 rounded">CLAUDE.md</code>
+            and
+            <code class="font-mono text-xs text-slate-300 bg-navy-900/70 px-1.5 py-0.5 rounded">context.md</code>.
+          </p>
+          <ol class="text-xs text-slate-500 space-y-1.5 list-decimal list-inside">
+            <li>Create a new folder in VS Code</li>
+            <li>Add <code class="font-mono bg-navy-900/70 px-1 rounded text-slate-400">CLAUDE.md</code> — describe the project</li>
+            <li>Add <code class="font-mono bg-navy-900/70 px-1 rounded text-slate-400">context.md</code> — your notes</li>
+          </ol>
+        </div>
+
+        <!-- Activity 3: Clone This Repo (live today) — highlighted -->
+        <div class="bg-navy-700/60 border border-[#5B7FFF]/30 rounded-xl p-5 ring-1 ring-[#5B7FFF]/15">
+          <div class="flex items-center gap-2 mb-3">
+            <div class="w-7 h-7 rounded-full bg-[#5B7FFF]/20 text-[#5B7FFF] text-sm font-bold flex items-center justify-center shrink-0"
+                 aria-label="Activity 3">3</div>
+            <h3 class="font-semibold text-white">Clone This Repo</h3>
+            <span class="text-[11px] font-semibold text-[#5B7FFF] bg-[#5B7FFF]/15 px-2 py-0.5 rounded-full ml-auto">Live today</span>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">
+            Download this exact workshop repo to your machine. Open it in VS Code and view it in your browser.
+          </p>
+          <ol class="text-xs text-slate-500 space-y-1.5 list-decimal list-inside">
+            <li>Open GitHub Desktop</li>
+            <li>File → Clone Repository</li>
+            <li>Open folder in VS Code</li>
+            <li>Open <code class="font-mono bg-navy-900/70 px-1 rounded text-slate-400">index.html</code> in browser</li>
+          </ol>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════ -->
+  <footer class="border-t border-white/[0.06] py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <img src="../../../GotPhoto Logo.svg"
+           alt="GotPhoto"
+           height="22"
+           class="h-[22px] w-auto opacity-40">
+      <p class="text-xs text-slate-700 text-center">
+        AI Workshop Series · Session 1 of 5 · April 2026
+      </p>
+      <p class="text-xs text-slate-700">Tailwind CSS · No build step</p>
+    </div>
+  </footer>
+
+</body>
+</html>

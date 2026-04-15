@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Hat top (wide — Wario style) -->
+  <rect x="10" y="8" width="44" height="14" rx="5" fill="#DAA520"/>
+  <!-- Hat brim (extra wide) -->
+  <rect x="4" y="18" width="56" height="8" rx="2" fill="#DAA520"/>
+  <!-- Face (rounder, chunkier) -->
+  <circle cx="32" cy="46" r="20" fill="#FDBCB4"/>
+  <!-- Eyes (beady) -->
+  <circle cx="25" cy="41" r="3.5" fill="#1a1a1a"/>
+  <circle cx="39" cy="41" r="3.5" fill="#1a1a1a"/>
+  <circle cx="26" cy="40" r="1" fill="white"/>
+  <circle cx="40" cy="40" r="1" fill="white"/>
+  <!-- Nose (big) -->
+  <ellipse cx="32" cy="47" rx="6" ry="5" fill="#E08C6C"/>
+  <!-- Mustache (black, bushy) -->
+  <ellipse cx="22" cy="53" rx="9" ry="4.5" fill="#1a1a1a"/>
+  <ellipse cx="42" cy="53" rx="9" ry="4.5" fill="#1a1a1a"/>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Hat top -->
+  <rect x="14" y="6" width="36" height="16" rx="5" fill="#CC0000"/>
+  <!-- Hat brim -->
+  <rect x="8" y="18" width="48" height="8" rx="2" fill="#CC0000"/>
+  <!-- Face -->
+  <circle cx="32" cy="46" r="18" fill="#FDBCB4"/>
+  <!-- Eyes -->
+  <circle cx="25" cy="41" r="3" fill="#1a1a1a"/>
+  <circle cx="39" cy="41" r="3" fill="#1a1a1a"/>
+  <circle cx="26" cy="40" r="1" fill="white"/>
+  <circle cx="40" cy="40" r="1" fill="white"/>
+  <!-- Nose -->
+  <ellipse cx="32" cy="47" rx="5" ry="4" fill="#E08C6C"/>
+  <!-- Mustache -->
+  <ellipse cx="23" cy="53" rx="8" ry="4" fill="#6B3A2A"/>
+  <ellipse cx="41" cy="53" rx="8" ry="4" fill="#6B3A2A"/>
+</svg>

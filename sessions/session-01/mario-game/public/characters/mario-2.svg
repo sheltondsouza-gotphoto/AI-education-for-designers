@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Hat top (tall — Luigi style) -->
+  <rect x="16" y="4" width="32" height="18" rx="5" fill="#228B22"/>
+  <!-- Hat brim -->
+  <rect x="8" y="18" width="48" height="8" rx="2" fill="#228B22"/>
+  <!-- Face (slightly slimmer) -->
+  <circle cx="32" cy="47" r="17" fill="#FDBCB4"/>
+  <!-- Eyes -->
+  <circle cx="25" cy="42" r="3" fill="#1a1a1a"/>
+  <circle cx="39" cy="42" r="3" fill="#1a1a1a"/>
+  <circle cx="26" cy="41" r="1" fill="white"/>
+  <circle cx="40" cy="41" r="1" fill="white"/>
+  <!-- Nose -->
+  <ellipse cx="32" cy="48" rx="4" ry="3.5" fill="#E08C6C"/>
+  <!-- Mustache (thinner) -->
+  <ellipse cx="24" cy="53" rx="7" ry="3.5" fill="#5A3020"/>
+  <ellipse cx="40" cy="53" rx="7" ry="3.5" fill="#5A3020"/>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Hat (Toad mushroom cap - blue) -->
+  <ellipse cx="32" cy="18" rx="26" ry="18" fill="#4169E1"/>
+  <!-- White spots on cap -->
+  <circle cx="22" cy="14" r="5" fill="white" opacity="0.85"/>
+  <circle cx="38" cy="10" r="4" fill="white" opacity="0.85"/>
+  <circle cx="44" cy="20" r="4" fill="white" opacity="0.85"/>
+  <!-- Face (round) -->
+  <circle cx="32" cy="46" r="16" fill="#FDBCB4"/>
+  <!-- Eyes (big and round — Toad style) -->
+  <circle cx="25" cy="42" r="5" fill="white"/>
+  <circle cx="39" cy="42" r="5" fill="white"/>
+  <circle cx="25" cy="42" r="3" fill="#1a1a1a"/>
+  <circle cx="39" cy="42" r="3" fill="#1a1a1a"/>
+  <circle cx="26" cy="41" r="1" fill="white"/>
+  <circle cx="40" cy="41" r="1" fill="white"/>
+  <!-- Nose (tiny) -->
+  <ellipse cx="32" cy="49" rx="3" ry="2.5" fill="#E08C6C"/>
+  <!-- Smile (no mustache) -->
+  <path d="M 24 55 Q 32 60 40 55" stroke="#6B3A2A" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>
