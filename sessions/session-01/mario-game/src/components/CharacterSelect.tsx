@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { Character } from '../types'
 
-// ── The 5 playable characters ─────────────────────────────────────
+// ── The 6 playable characters ─────────────────────────────────────
 const CHARACTERS: Character[] = [
-  { id: 1, name: 'Mario',   color: '#CC0000', image: '/characters/mario-1.svg' },
-  { id: 2, name: 'Luigi',   color: '#228B22', image: '/characters/mario-2.svg' },
-  { id: 3, name: 'Wario',   color: '#DAA520', image: '/characters/mario-3.svg' },
-  { id: 4, name: 'Toad',    color: '#4169E1', image: '/characters/mario-4.svg' },
-  { id: 5, name: 'Waluigi', color: '#800080', image: '/characters/mario-5.svg' },
+  { id: 1, name: 'Alice',   color: '#CC0000', image: '/characters/Alice.svg' },
+  { id: 2, name: 'Chloe',   color: '#E91E8C', image: '/characters/Chloe.svg' },
+  { id: 3, name: 'Nils',    color: '#228B22', image: '/characters/Nils.svg' },
+  { id: 4, name: 'Siavash', color: '#4169E1', image: '/characters/Siavash.svg' },
+  { id: 5, name: 'Shelton', color: '#DAA520', image: '/characters/shelton.svg' },
+  { id: 6, name: 'Usama',   color: '#800080', image: '/characters/usama.svg' },
 ]
 
 // ── Props ─────────────────────────────────────────────────────────
@@ -19,7 +20,7 @@ export default function CharacterSelect({ onSelect }: Props) {
   const [selected, setSelected] = useState<Character | null>(null)
 
   return (
-    <div className="bg-white rounded-2xl p-8 shadow-2xl w-full max-w-xl">
+    <div className="bg-white rounded-2xl p-8 shadow-2xl w-full max-w-md">
       <h1 className="text-3xl font-bold text-center text-gray-800 mb-1">
         🍄 Mario Game
       </h1>
@@ -28,7 +29,7 @@ export default function CharacterSelect({ onSelect }: Props) {
       </p>
 
       {/* Character grid */}
-      <div className="grid grid-cols-5 gap-3 mb-8">
+      <div className="grid grid-cols-3 gap-3 mb-8">
         {CHARACTERS.map((c) => (
           <button
             key={c.id}
