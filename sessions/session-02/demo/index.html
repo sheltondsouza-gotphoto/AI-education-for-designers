@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Workshop · Session 2 · GotPhoto</title>
+  <meta name="description" content="Session 2 reference guide: package managers, Git, GitHub &amp; GitLab, Desktop &amp; CLI, APIs, MCP, and Claude Code.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+          },
+          colors: {
+            navy: {
+              950: '#080C1C',
+              900: '#0D1129',
+              800: '#111629',
+              700: '#1B2251',
+              600: '#252E6A',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    .topic-card {
+      transition: transform 150ms ease-out;
+    }
+    .topic-card:hover {
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body class="bg-navy-900 text-white font-sans antialiased min-h-dvh">
+
+  <!-- Skip link -->
+  <a href="#main"
+     class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#5B7FFF] focus:text-white focus:rounded-lg focus:font-semibold focus:shadow-lg">
+    Skip to main content
+  </a>
+
+  <!-- ══════════════════════════════════════════
+       HEADER
+  ══════════════════════════════════════════ -->
+  <header class="sticky top-0 z-40 border-b border-white/[0.07] bg-navy-900/90 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+
+      <div class="flex items-center gap-4">
+        <img src="../../../GotPhoto Logo.svg"
+             alt="GotPhoto"
+             height="28"
+             class="h-7 w-auto">
+        <span class="h-4 w-px bg-white/15 hidden sm:block" aria-hidden="true"></span>
+        <span class="text-sm text-slate-400 font-medium hidden sm:block">AI Workshop</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-semibold tracking-wide text-slate-300 bg-navy-700 border border-white/10 px-3 py-1.5 rounded-full">
+          Session 2 · Dev Workflow
+        </span>
+        <span class="text-xs text-slate-600 hidden sm:inline">2026</span>
+      </div>
+
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ══════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════ -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 pt-16 pb-12">
+      <p class="text-xs font-bold tracking-[0.25em] uppercase text-[#5B7FFF] mb-5">
+        Session 2 of 6
+      </p>
+      <h1 class="text-4xl sm:text-[3.25rem] font-bold leading-[1.1] tracking-tight text-white mb-5 max-w-2xl">
+        Dev Workflow
+      </h1>
+      <p class="text-base sm:text-lg text-slate-400 leading-relaxed max-w-xl mb-8">
+        Package managers first, then Git, GitHub &amp; GitLab, Desktop &amp; CLI, APIs, MCP, and Claude Code.
+        Keep this open during the session.
+      </p>
+      <nav class="flex flex-wrap gap-3" aria-label="Jump to section">
+        <a href="#topics"
+           class="inline-flex items-center gap-2 bg-[#5B7FFF] hover:bg-[#7090FF] text-white font-semibold text-sm px-5 py-2.5 rounded-lg transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5B7FFF] focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900">
+          8 Topics <span aria-hidden="true">↓</span>
+        </a>
+        <a href="#commands"
+           class="inline-flex items-center gap-2 border border-white/15 hover:border-white/30 text-slate-200 hover:text-white font-medium text-sm px-5 py-2.5 rounded-lg transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900">
+          Quick Commands
+        </a>
+        <a href="#activities"
+           class="inline-flex items-center gap-2 border border-white/15 hover:border-white/30 text-slate-200 hover:text-white font-medium text-sm px-5 py-2.5 rounded-lg transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900">
+          Activities
+        </a>
+      </nav>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         TOPICS
+    ══════════════════════════════════════════ -->
+    <section id="topics" class="max-w-6xl mx-auto px-4 sm:px-6 pb-16" aria-labelledby="topics-heading">
+      <div class="flex items-baseline gap-3 mb-7">
+        <h2 id="topics-heading" class="text-xl font-bold text-white">Topics</h2>
+        <span class="text-sm text-slate-600">8 concepts</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+
+        <!-- 1. Package Managers — Dev Tools → blue #5B7FFF -->
+        <article class="topic-card relative bg-navy-700/50 border border-white/[0.07] rounded-xl p-5 pl-6 overflow-hidden">
+          <div class="absolute left-0 top-5 bottom-5 w-[3px] bg-[#5B7FFF] rounded-full" aria-hidden="true"></div>
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#5B7FFF] mb-2">Dev Tools</p>
+          <h3 class="font-semibold text-white mb-1.5">Package Managers</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            <code class="font-mono text-xs text-slate-300 bg-navy-900/70 px-1.5 py-0.5 rounded">npm install</code> reads
+            <code class="font-mono text-xs text-slate-300 bg-navy-900/70 px-1.5 py-0.5 rounded">package.json</code>
+            and downloads every dependency into <code class="font-mono text-xs text-slate-300 bg-navy-900/70 px-1.5 py-0.5 rounded">node_modules/</code>.
+            <code class="font-mono text-xs text-slate-300 bg-navy-900/70 px-1.5 py-0.5 rounded">npm run dev</code> runs the script defined in your config — usually Vite or Next.js.
+          </p>
+        </article>
+
+        <!-- 2. Versioning & Git — Version Control → orange #FB923C -->
+        <article class="topic-card relative bg-navy-700/50 border border-white/[0.07] rounded-xl p-5 pl-6 overflow-hidden">
+          <div class="absolute left-0 top-5 bottom-5 w-[3px] bg-[#FB923C] rounded-full" aria-hidden="true"></div>
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#FB923C] mb-2">Version Control</p>
+          <h3 class="font-semibold text-white mb-1.5">Versioning & Git (Revision)</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Every commit is a named save point. Branches are parallel timelines — experiment without touching main.
+            <code class="font-mono text-xs text-slate-300 bg-navy-900/70 px-1.5 py-0.5 rounded">pull</code> downloads,
+            <code class="font-mono text-xs text-slate-300 bg-navy-900/70 px-1.5 py-0.5 rounded">push</code> uploads.
+          </p>
+          <div class="mt-3 flex flex-wrap gap-x-4 gap-y-1.5">
+            <a href="https://rogerdudler.github.io/git-guide/" target="_blank" rel="noopener" class="text-xs font-medium text-[#FB923C]/70 hover:text-[#FB923C] transition-colors">git - the simple guide ↗</a>
+          </div>
+        </article>
+
+        <!-- 3. GitHub & GitLab — Version Control → orange -->
+        <article class="topic-card relative bg-navy-700/50 border border-white/[0.07] rounded-xl p-5 pl-6 overflow-hidden">
+          <div class="absolute left-0 top-5 bottom-5 w-[3px] bg-[#FB923C] rounded-full" aria-hidden="true"></div>
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#FB923C] mb-2">Version Control</p>
+          <h3 class="font-semibold text-white mb-1.5">GitHub & GitLab</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Remote hosts for git repos. GitHub = open, social, widely used for open source.
+            GitLab = often self-hosted by companies for privacy. Both speak git.
+          </p>
+        </article>
+
+        <!-- 4. GitHub Desktop — Version Control → orange -->
+        <article class="topic-card relative bg-navy-700/50 border border-white/[0.07] rounded-xl p-5 pl-6 overflow-hidden">
+          <div class="absolute left-0 top-5 bottom-5 w-[3px] bg-[#FB923C] rounded-full" aria-hidden="true"></div>
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#FB923C] mb-2">Version Control</p>
+          <h3 class="font-semibold text-white mb-1.5">GitHub Desktop</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Git with a visual interface. Create branches, stage changes, write commit messages, push —
+            all from a UI that shows exactly what changed and why.
+          </p>
+          <div class="mt-3 flex flex-wrap gap-x-4 gap-y-1.5">
+            <a href="https://git-scm.com/install/mac" target="_blank" rel="noopener" class="text-xs font-medium text-[#FB923C]/70 hover:text-[#FB923C] transition-colors">Install git on Mac ↗</a>
+          </div>
+        </article>
+
+        <!-- 5. GitHub CLI — Dev Tools → blue #5B7FFF -->
+        <article class="topic-card relative bg-navy-700/50 border border-white/[0.07] rounded-xl p-5 pl-6 overflow-hidden">
+          <div class="absolute left-0 top-5 bottom-5 w-[3px] bg-[#5B7FFF] rounded-full" aria-hidden="true"></div>
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#5B7FFF] mb-2">Dev Tools</p>
+          <h3 class="font-semibold text-white mb-1.5">GitHub CLI (<code class="font-mono text-sm">gh</code>)</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            GitHub from the terminal. Install a remote CLI with
+            <code class="font-mono text-xs text-slate-300 bg-navy-900/70 px-1.5 py-0.5 rounded">brew install gh</code>,
+            then create PRs, clone repos, and check status without leaving your editor.
+          </p>
+          <div class="mt-3 flex flex-wrap gap-x-4 gap-y-1.5">
+            <a href="https://cli.github.com/manual/index" target="_blank" rel="noopener" class="text-xs font-medium text-[#5B7FFF]/70 hover:text-[#5B7FFF] transition-colors">gh CLI manual ↗</a>
+          </div>
+        </article>
+
+        <!-- 6. APIs & REST — Web Dev → emerald #34D399 -->
+        <article class="topic-card relative bg-navy-700/50 border border-white/[0.07] rounded-xl p-5 pl-6 overflow-hidden">
+          <div class="absolute left-0 top-5 bottom-5 w-[3px] bg-[#34D399] rounded-full" aria-hidden="true"></div>
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#34D399] mb-2">Web Dev</p>
+          <h3 class="font-semibold text-white mb-1.5">APIs & REST (Deep Dive)</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Every request has a method (GET/POST), URL, headers, and optional body. Every response has a
+            status code and a JSON body. DevTools → Network tab shows every request your browser makes.
+          </p>
+          <div class="mt-3 flex flex-wrap gap-x-4 gap-y-1.5">
+            <a href="https://dev.to/icornea/what-are-apis-a-beginners-guide-with-examples-4ok8" target="_blank" rel="noopener" class="text-xs font-medium text-[#34D399]/70 hover:text-[#34D399] transition-colors">What are APIs? ↗</a>
+            <a href="https://www.geeksforgeeks.org/node-js/rest-api-introduction/" target="_blank" rel="noopener" class="text-xs font-medium text-[#34D399]/70 hover:text-[#34D399] transition-colors">REST API intro ↗</a>
+          </div>
+        </article>
+
+        <!-- 7. MCP Architecture — AI → purple #A78BFA -->
+        <article class="topic-card relative bg-navy-700/50 border border-white/[0.07] rounded-xl p-5 pl-6 overflow-hidden">
+          <div class="absolute left-0 top-5 bottom-5 w-[3px] bg-[#A78BFA] rounded-full" aria-hidden="true"></div>
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#A78BFA] mb-2">AI</p>
+          <h3 class="font-semibold text-white mb-1.5">MCP Architecture</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            <strong class="text-slate-300 font-medium">Host</strong> runs Claude (Claude Desktop / Claude Code).
+            <strong class="text-slate-300 font-medium">Client</strong> lives inside the host and speaks the MCP protocol.
+            <strong class="text-slate-300 font-medium">Server</strong> exposes tools — Figma, Slack, your filesystem.
+          </p>
+          <div class="mt-3 flex flex-wrap gap-x-4 gap-y-1.5">
+            <a href="https://snyk.io/articles/a-beginners-guide-to-visually-understanding-mcp-architecture/" target="_blank" rel="noopener" class="text-xs font-medium text-[#A78BFA]/70 hover:text-[#A78BFA] transition-colors">Visual MCP guide ↗</a>
+          </div>
+        </article>
+
+        <!-- 8. Claude Code — AI → purple -->
+        <article class="topic-card relative bg-navy-700/50 border border-white/[0.07] rounded-xl p-5 pl-6 overflow-hidden">
+          <div class="absolute left-0 top-5 bottom-5 w-[3px] bg-[#A78BFA] rounded-full" aria-hidden="true"></div>
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#A78BFA] mb-2">AI Tools</p>
+          <h3 class="font-semibold text-white mb-1.5">Claude Code</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            CLI agent for multi-file code tasks. Run
+            <code class="font-mono text-xs text-slate-300 bg-navy-900/70 px-1.5 py-0.5 rounded">claude</code>
+            in any project folder. Connect MCP servers via a JSON config file to give Claude access to your tools.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         QUICK COMMANDS
+    ══════════════════════════════════════════ -->
+    <section id="commands" class="max-w-6xl mx-auto px-4 sm:px-6 pb-16" aria-labelledby="commands-heading">
+      <div class="flex items-baseline gap-3 mb-7">
+        <h2 id="commands-heading" class="text-xl font-bold text-white">Quick Commands</h2>
+        <span class="text-sm text-slate-600">Terminal reference</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <!-- npm (matches topic order: package managers first) -->
+        <div class="bg-navy-800 border border-white/[0.06] rounded-xl p-5">
+          <h3 class="text-xs font-semibold tracking-[0.15em] uppercase text-slate-500 mb-4">npm</h3>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#34D399] bg-navy-950 px-3 py-1.5 rounded-lg w-[160px] shrink-0">npm install</code>
+              <span class="text-sm text-slate-400">Install dependencies</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#34D399] bg-navy-950 px-3 py-1.5 rounded-lg w-[160px] shrink-0">npm run dev</code>
+              <span class="text-sm text-slate-400">Start dev server</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#34D399] bg-navy-950 px-3 py-1.5 rounded-lg w-[160px] shrink-0">npm run build</code>
+              <span class="text-sm text-slate-400">Compile for production</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#34D399] bg-navy-950 px-3 py-1.5 rounded-lg w-[160px] shrink-0">npm install pkg</code>
+              <span class="text-sm text-slate-400">Add a package</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#34D399] bg-navy-950 px-3 py-1.5 rounded-lg w-[160px] shrink-0">npm run …</code>
+              <span class="text-sm text-slate-400">Run any script</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Git -->
+        <div class="bg-navy-800 border border-white/[0.06] rounded-xl p-5">
+          <h3 class="text-xs font-semibold tracking-[0.15em] uppercase text-slate-500 mb-4">Git</h3>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#FB923C] bg-navy-950 px-3 py-1.5 rounded-lg w-[160px] shrink-0">git status</code>
+              <span class="text-sm text-slate-400">What changed?</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#FB923C] bg-navy-950 px-3 py-1.5 rounded-lg w-[160px] shrink-0">git pull</code>
+              <span class="text-sm text-slate-400">Download latest</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#FB923C] bg-navy-950 px-3 py-1.5 rounded-lg w-[160px] shrink-0">git branch name</code>
+              <span class="text-sm text-slate-400">Create a branch</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#FB923C] bg-navy-950 px-3 py-1.5 rounded-lg w-[160px] shrink-0">git checkout name</code>
+              <span class="text-sm text-slate-400">Switch branch</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#FB923C] bg-navy-950 px-3 py-1.5 rounded-lg w-[160px] shrink-0">git log --oneline</code>
+              <span class="text-sm text-slate-400">Compact history</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- GitHub CLI -->
+        <div class="bg-navy-800 border border-white/[0.06] rounded-xl p-5">
+          <h3 class="text-xs font-semibold tracking-[0.15em] uppercase text-slate-500 mb-4">GitHub CLI (gh)</h3>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#5B7FFF] bg-navy-950 px-3 py-1.5 rounded-lg w-[160px] shrink-0">gh auth login</code>
+              <span class="text-sm text-slate-400">Authenticate</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#5B7FFF] bg-navy-950 px-3 py-1.5 rounded-lg w-[160px] shrink-0">gh repo view --web</code>
+              <span class="text-sm text-slate-400">Open repo in browser</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#5B7FFF] bg-navy-950 px-3 py-1.5 rounded-lg w-[160px] shrink-0">gh pr list</code>
+              <span class="text-sm text-slate-400">Show open PRs</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#5B7FFF] bg-navy-950 px-3 py-1.5 rounded-lg w-[160px] shrink-0">gh pr create</code>
+              <span class="text-sm text-slate-400">Open a pull request</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <code class="font-mono text-sm text-[#5B7FFF] bg-navy-950 px-3 py-1.5 rounded-lg w-[160px] shrink-0">gh repo clone …</code>
+              <span class="text-sm text-slate-400">Clone a repo</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- package.json anatomy -->
+      <div class="mt-4 bg-navy-800 border border-white/[0.06] rounded-xl p-5">
+        <h3 class="text-xs font-semibold tracking-[0.15em] uppercase text-slate-500 mb-4">
+          package.json — what <code class="font-mono normal-case text-slate-400">npm run dev</code> actually does
+        </h3>
+        <pre class="font-mono text-sm leading-relaxed overflow-x-auto"><code><span class="text-slate-600">{</span>
+  <span class="text-[#5B7FFF]">"scripts"</span><span class="text-slate-600">: {</span>
+    <span class="text-[#34D399]">"dev"</span><span class="text-slate-500">:</span>     <span class="text-[#FB923C]">"vite"</span><span class="text-slate-600">,</span>          <span class="text-slate-600 italic">← npm run dev runs this</span>
+    <span class="text-[#34D399]">"build"</span><span class="text-slate-500">:</span>   <span class="text-[#FB923C]">"vite build"</span><span class="text-slate-600">,</span>    <span class="text-slate-600 italic">← compiles for production</span>
+    <span class="text-[#34D399]">"preview"</span><span class="text-slate-500">:</span> <span class="text-[#FB923C]">"vite preview"</span>      <span class="text-slate-600 italic">← serves the built output</span>
+  <span class="text-slate-600">},</span>
+  <span class="text-[#5B7FFF]">"dependencies"</span><span class="text-slate-600">: {</span>
+    <span class="text-slate-400">"react"</span><span class="text-slate-500">:</span> <span class="text-[#FB923C]">"^18.2.0"</span>          <span class="text-slate-600 italic">← shipped to users</span>
+  <span class="text-slate-600">},</span>
+  <span class="text-[#5B7FFF]">"devDependencies"</span><span class="text-slate-600">: {</span>
+    <span class="text-slate-400">"vite"</span><span class="text-slate-500">:</span> <span class="text-[#FB923C]">"^4.4.5"</span>           <span class="text-slate-600 italic">← build tools only, never shipped</span>
+  <span class="text-slate-600">}</span>
+<span class="text-slate-600">}</span></code></pre>
+      </div>
+
+      <!-- MCP diagram -->
+      <div class="mt-4 bg-navy-800 border border-white/[0.06] rounded-xl p-5">
+        <h3 class="text-xs font-semibold tracking-[0.15em] uppercase text-slate-500 mb-4">MCP Architecture</h3>
+        <pre class="font-mono text-sm leading-loose overflow-x-auto"><code><span class="text-slate-500">┌─────────────────────────────────────────────────────┐</span>
+<span class="text-slate-500">│</span>  <span class="text-[#A78BFA] font-semibold">HOST</span>  <span class="text-slate-600">(Claude Desktop / Claude Code CLI)</span>           <span class="text-slate-500">│</span>
+<span class="text-slate-500">│</span>                                                     <span class="text-slate-500">│</span>
+<span class="text-slate-500">│</span>  <span class="text-slate-300">┌──────────┐</span>       <span class="text-slate-300">┌────────────────┐</span>             <span class="text-slate-500">│</span>
+<span class="text-slate-500">│</span>  <span class="text-slate-300">│</span>  <span class="text-[#A78BFA]">Claude</span>  <span class="text-slate-300">│</span><span class="text-slate-500">◄─────►</span><span class="text-slate-300">│</span>  <span class="text-[#A78BFA]">MCP Client</span>  <span class="text-slate-300">│</span>             <span class="text-slate-500">│</span>
+<span class="text-slate-500">│</span>  <span class="text-slate-300">│  (LLM)   │</span>       <span class="text-slate-300">│  (connector)   │</span>             <span class="text-slate-500">│</span>
+<span class="text-slate-500">│</span>  <span class="text-slate-300">└──────────┘</span>       <span class="text-slate-300">└───────┬────────┘</span>             <span class="text-slate-500">│</span>
+<span class="text-slate-500">└──────────────────────────────</span><span class="text-slate-300">│</span><span class="text-slate-500">──────────────────────┘</span>
+                               <span class="text-slate-300">│</span>  MCP protocol
+             <span class="text-slate-500">┌──────────────────┴──────────────────┐</span>
+             <span class="text-slate-500">│</span>          <span class="text-[#A78BFA] font-semibold">MCP Server</span>                    <span class="text-slate-500">│</span>
+             <span class="text-slate-500">│</span>  <span class="text-slate-400">Figma · Slack · filesystem · your tool</span>  <span class="text-slate-500">│</span>
+             <span class="text-slate-500">└─────────────────────────────────────┘</span></code></pre>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         ACTIVITIES
+    ══════════════════════════════════════════ -->
+    <section id="activities" class="max-w-6xl mx-auto px-4 sm:px-6 pb-20" aria-labelledby="activities-heading">
+      <div class="flex items-baseline gap-3 mb-7">
+        <h2 id="activities-heading" class="text-xl font-bold text-white">Activities</h2>
+        <span class="text-sm text-slate-600">Hands-on</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+        <!-- Activity 1: Setup script (live today) — highlighted -->
+        <div class="bg-navy-700/60 border border-[#5B7FFF]/30 rounded-xl p-5 ring-1 ring-[#5B7FFF]/15">
+          <div class="flex items-center gap-2 mb-3">
+            <div class="w-7 h-7 rounded-full bg-[#5B7FFF]/20 text-[#5B7FFF] text-sm font-bold flex items-center justify-center shrink-0"
+                 aria-label="Activity 1">1</div>
+            <h3 class="font-semibold text-white">Run Setup Script</h3>
+            <span class="text-[11px] font-semibold text-[#5B7FFF] bg-[#5B7FFF]/15 px-2 py-0.5 rounded-full ml-auto">Live today</span>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">
+            One script sets up your personal mario game copy, installs dependencies, and authenticates the GitHub CLI.
+          </p>
+          <ol class="text-xs text-slate-500 space-y-1.5 list-decimal list-inside">
+            <li>Open terminal in the repo root</li>
+            <li>Run <code class="font-mono bg-navy-900/70 px-1 rounded text-slate-400">./setup.sh</code></li>
+            <li>Follow the GitHub login prompt</li>
+            <li>Run <code class="font-mono bg-navy-900/70 px-1 rounded text-slate-400">gh repo view --web</code></li>
+          </ol>
+        </div>
+
+        <!-- Activity 2: Mario game + package.json -->
+        <div class="bg-navy-700/40 border border-white/[0.07] rounded-xl p-5">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-7 h-7 rounded-full bg-white/10 text-slate-400 text-sm font-bold flex items-center justify-center shrink-0"
+                 aria-label="Activity 2">2</div>
+            <h3 class="font-semibold text-white">Explore the Mario Game</h3>
+            <span class="text-[11px] font-medium text-slate-500 bg-white/5 border border-white/10 px-2 py-0.5 rounded-full ml-auto">Hands-on</span>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">
+            Start your personal copy and find the script that <code class="font-mono text-xs text-slate-300 bg-navy-900/70 px-1.5 py-0.5 rounded">npm run dev</code> actually runs.
+          </p>
+          <ol class="text-xs text-slate-500 space-y-1.5 list-decimal list-inside">
+            <li><code class="font-mono bg-navy-900/70 px-1 rounded text-slate-400">cd sessions/mario-game</code></li>
+            <li><code class="font-mono bg-navy-900/70 px-1 rounded text-slate-400">npm run dev</code></li>
+            <li>Open <code class="font-mono bg-navy-900/70 px-1 rounded text-slate-400">localhost:5173</code> in browser</li>
+            <li>Open <code class="font-mono bg-navy-900/70 px-1 rounded text-slate-400">package.json</code> — what does the <code class="font-mono bg-navy-900/70 px-1 rounded text-slate-400">dev</code> script run?</li>
+          </ol>
+        </div>
+
+        <!-- Activity 3: Claude Code + MCP (async homework) -->
+        <div class="bg-navy-700/40 border border-white/[0.07] rounded-xl p-5">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-7 h-7 rounded-full bg-white/10 text-slate-400 text-sm font-bold flex items-center justify-center shrink-0"
+                 aria-label="Activity 3">3</div>
+            <h3 class="font-semibold text-white">Claude Code + First MCP</h3>
+            <span class="text-[11px] font-medium text-slate-500 bg-white/5 border border-white/10 px-2 py-0.5 rounded-full ml-auto">Async</span>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">
+            Install Claude Code and wire up the filesystem MCP server so Claude can read your local files.
+          </p>
+          <ol class="text-xs text-slate-500 space-y-1.5 list-decimal list-inside">
+            <li>Follow setup docs at <code class="font-mono bg-navy-900/70 px-1 rounded text-slate-400">docs.anthropic.com</code></li>
+            <li><code class="font-mono bg-navy-900/70 px-1 rounded text-slate-400">npm install -g @anthropic-ai/claude-code</code></li>
+            <li>Add filesystem MCP to Claude Desktop config</li>
+            <li>Restart Claude Desktop — look for the tools icon</li>
+          </ol>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════ -->
+  <footer class="border-t border-white/[0.06] py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <img src="../../../GotPhoto Logo.svg"
+           alt="GotPhoto"
+           height="22"
+           class="h-[22px] w-auto opacity-40">
+      <p class="text-xs text-slate-700 text-center">
+        AI Workshop Series · Session 2 of 6 · 2026
+      </p>
+      <p class="text-xs text-slate-700">Tailwind CSS · No build step</p>
+    </div>
+  </footer>
+
+</body>
+</html>

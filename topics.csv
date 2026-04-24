@@ -1,51 +1,58 @@
 Category,Session,Topic,Technical Explanation
 Web Development,1- Intro,React / Next.js / TS,"Building type-safe, scalable web apps with TypeScript and Next.js."
 UI/UX & Design,1- Intro,Tailwind CSS,A utility-first CSS framework for rapid styling (like Auto-Layout in code).
-Data Management,1- Intro,Python (for Data),"Using Python for heavy data analysis, visualization (D3 - Using other peoples code.js / Recharts), and automation."
+Data Management,1- Intro,Python (for Data),"Using Python for heavy data analysis, visualization (D3.js / Recharts), and automation."
 Dev Tools,1- Intro,IDE & Debugger,Using the Integrated Development Environment and tools to step through and fix broken code.
 Dev Tools,1- Intro,The Terminal (CLI),"Command Line basics: Navigation (cd, ls, mkdir) and running environment scripts."
-Dev Tools,1- Intro,Local Environment & Localhost,Configuring Node.js/Python and viewing your private preview server on localhost:3 - Using other peoples code000.
+Dev Tools,1- Intro,Local Environment & Localhost,Configuring Node.js/Python and viewing your private preview server on localhost:3000.
 Web Development,1- Intro,APIs & REST,How apps exchange data using GET/POST/PUT/DELETE methods. Reading documentation.
 AI Concepts,1- Intro,MCP (Protocol),"The Model Context Protocol used to plug Claude into local files, Slack, or Google Drive."
 Version Control,1- Intro,Git Basics,"Saving progress via Commits, experimenting with Branches, and combining work via Merges."
 Version Control,1- Intro,GitHub Desktop,A visual interface for Git that manages history without using the terminal.
-AI Concepts,2 - Deeper into LLMs,"How LLMs ""Think""","Understanding Tokenization, Probability, and the difference between ""Stochastic Parrots"" and ""Reasoning."""
-AI Concepts,2 - Deeper into LLMs,Model Tiering,When to use Reasoning models (o1- Intro/Claude 3 - Using other peoples code.5) vs. Fast models (GPT-The overlap between front end and designo mini) vs. Local models (Llama 3 - Using other peoples code).
-AI Concepts,2 - Deeper into LLMs,Context Windows,"Managing the finite ""active memory"" of a conversation to prevent context loss or hallucination."
-AI Concepts,2 - Deeper into LLMs,"The AI ""Agent"" Stack",The architecture of an Agent: LLM + Tools (Terminal/Browser) + Context (Project Files/Data).
-AI Concepts,2 - Deeper into LLMs,Chain of Thought (CoT),Forcing the model to output its reasoning steps before providing the final answer/code.
-AI Tools,2 - Deeper into LLMs,Claude Code,"A CLI-based agent for complex, multi-file refactors and autonomous data/code tasks."
-AI Tools,2 - Deeper into LLMs,Cursor,"An AI-native IDE that prioritizes real-time, inline code assistance and multi-file ""Composer."""
-AI Tools,2 - Deeper into LLMs,Google Stitch,"An AI-native ""Vibe Design"" canvas that generates UI and code from voice, text, or images."
-AI Tools,2 - Deeper into LLMs,v0.dev,Generative UI specifically for React and Tailwind components from prompts or screenshots.
-AI Concepts,2 - Deeper into LLMs,"""Context First"" Prompting","Defining the Stack, User, and Goal in a system prompt before coding."
-Dev Tools,3 - Using other peoples code,Package Management,"Using npm or bun to install and manage third-party code libraries (the ""Dependency Tree"")."
-Dev Tools,3 - Using other peoples code,Environment Variables,Using .env files to store secret API keys securely away from your main code.
-Web Development,3 - Using other peoples code,Webhooks,"Real-time ""Pings"" that notify your app when an event happens in another service."
-Version Control,3 - Using other peoples code,Merge Conflicts & PRs,Resolving overlapping code changes and submitting Pull Requests for review.
-Data Management,3 - Using other peoples code,Data Schema & JSON,"Designing the ""Map"" of your data and communicating it via JSON format."
-UI/UX & Design,4 - From design to implementation,Component Thinking,Moving from Figma layers to reusable React components and Lucide Icons.
-Software Engineering,4 - From design to implementation,Separation of Concerns,"Decoupling the UI (Tailwind), the Logic (TypeScript), and the Structure (React)."
-UI/UX & Design,4 - From design to implementation,Design Tokens,Mapping variables to CSS Variables or Tailwind Themes (JSON configuration).
-Software Engineering,4 - From design to implementation,Technical Debt,"Understanding the long-term cost of choosing ""hacky"" code solutions over clean architecture."
-Software Engineering,4 - From design to implementation,Spec-Driven Dev (SDD),Writing technical Markdown (.md) specs to guide AI agents through complex builds.
-Data Management,4 - From design to implementation,JSON,"JavaScript Object Notation: The standard lightweight, text-based format used to structure and exchange data between a server and a web app."
-Dev Tools,4 - From design to implementation,Environment Variables,.env Files: Local files used to store sensitive configuration data (like API keys) so they aren't hard-coded into the public source code.
-Software Engineering,4 - From design to implementation,Markdown (.md),"A lightweight markup language with plain-text formatting syntax, used for technical documentation and AI ""Specs."""
-Data Management,4 - From design to implementation,Data Schema,"The formal blueprint or ""map"" that defines how data is structured, stored, and related within a database."
-Data Management,4 - From design to implementation,CRUD,"Create, Read, Update, Delete: The four essential operations required to manage persistent data in any application."
-Web Development,4 - From design to implementation,Headless CMS,"A back-end-only content management system that provides content as data via an API, decoupled from the visual ""head."""
-Web Development,4 - From design to implementation,Webhooks,"""Reverse APIs"" that allow one application to send real-time data to another as soon as a specific event occurs."
-DevOps,4 - From design to implementation,CI/CD,"Continuous Integration/Continuous Deployment: Automated pipelines that test, build, and ship code updates to production."
-Version Control,4 - From design to implementation,Merge Conflicts,"A Git event occurring when two sets of changes are made to the same line of code, requiring manual reconciliation."
-DevOps,4 - From design to implementation,Serverless / Edge,Cloud computing models where code runs on-demand in locations physically closer to the user without managing servers.
-Software Engineering,4 - From design to implementation,Boilerplates,"Pre-configured project templates that include a standard tech stack, allowing you to bypass ""empty folder"" setup."
-UI/UX & Design,4 - From design to implementation,UI Libraries,"Collections of pre-built, accessible components (like shadcn/ui or Radix) that can be imported and styled."
-AI Tools,5 - Building applications with LLMs,n8n & LangChain,"Visual automation (n8n) vs programmatic ""Chaining"" (LangChain) for AI workflows."
-Data Management,5 - Building applications with LLMs,Vector DBs & RAG,Using Vector Embeddings to let AI search thousands of documents via RAG.
-DevOps,5 - Building applications with LLMs,Vercel / Netlify,"""One-click"" Deployment to turn a local project into a live URL."
-Web Development,5 - Building applications with LLMs,Supabase (Backend),"A ""Low-code"" PostgreSQL database with built-in Auth and CRUD functions."
-DevOps,5 - Building applications with LLMs,Docker & Containers,Packaging an app to ensure it runs identically on any machine via Containers.
-DevOps,5 - Building applications with LLMs,CI/CD & Serverless,"Automating testing/shipping and running code on the ""Edge"" without server management."
-AI Concepts,5 - Building applications with LLMs,Latent Space,"The multi-dimensional mathematical ""map"" where an AI model clusters related concepts based on their semantic similarity."
-AI Concepts,5 - Building applications with LLMs,Temperature,"A hyperparameter that controls the randomness of AI output; low is deterministic/precise, high is creative/varied."
+Version Control,2 - Dev Workflow,Versioning & Git (Revision),"Review of commits, branches, pull vs push, remote vs local. What git pull actually does."
+Version Control,2 - Dev Workflow,GitHub & GitLab,"Remote repository hosting. GitHub = social/open, GitLab = often self-hosted. Forks, remotes, origin."
+Dev Tools,2 - Dev Workflow,GitHub Desktop (Hands-on),"Branching, staging, history, resolving conflicts — all without the terminal."
+Dev Tools,2 - Dev Workflow,GitHub CLI (gh),"Installing a remote CLI via brew. gh auth login, gh pr create, gh repo view. Terminal as GitHub UI."
+Dev Tools,2 - Dev Workflow,Package Managers (npm / bun),"Dependency graphs, node_modules, package.json scripts, lock files. What npm run dev actually does."
+Web Development,2 - Dev Workflow,APIs & REST (Deep Dive),"Request/response cycle, HTTP status codes, reading API docs, browser DevTools Network tab."
+AI Concepts,2 - Dev Workflow,MCP Architecture,"Host / Client / Server model. How Claude connects to Figma, Slack, local files via a standard protocol."
+AI Tools,2 - Dev Workflow,Claude Code Setup,"CLI agent for multi-file code tasks. Install via npm, configure MCP servers in JSON config."
+AI Concepts,3 - Deeper into LLMs,"How LLMs ""Think""","Understanding Tokenization, Probability, and the difference between ""Stochastic Parrots"" and ""Reasoning."""
+AI Concepts,3 - Deeper into LLMs,Model Tiering,When to use Reasoning models vs Fast models vs Local models (Llama 3).
+AI Concepts,3 - Deeper into LLMs,Context Windows,"Managing the finite ""active memory"" of a conversation to prevent context loss or hallucination."
+AI Concepts,3 - Deeper into LLMs,"The AI ""Agent"" Stack",The architecture of an Agent: LLM + Tools (Terminal/Browser) + Context (Project Files/Data).
+AI Concepts,3 - Deeper into LLMs,Chain of Thought (CoT),Forcing the model to output its reasoning steps before providing the final answer/code.
+AI Tools,3 - Deeper into LLMs,Cursor,"An AI-native IDE that prioritizes real-time, inline code assistance and multi-file ""Composer."""
+AI Tools,3 - Deeper into LLMs,Google Stitch,"An AI-native ""Vibe Design"" canvas that generates UI and code from voice, text, or images."
+AI Tools,3 - Deeper into LLMs,v0.dev,Generative UI specifically for React and Tailwind components from prompts or screenshots.
+AI Concepts,3 - Deeper into LLMs,"""Context First"" Prompting","Defining the Stack, User, and Goal in a system prompt before coding."
+Dev Tools,4 - Using other peoples code,Package Management,"Using npm or bun to install and manage third-party code libraries (the ""Dependency Tree"")."
+Dev Tools,4 - Using other peoples code,Environment Variables,Using .env files to store secret API keys securely away from your main code.
+Web Development,4 - Using other peoples code,Webhooks,"Real-time ""Pings"" that notify your app when an event happens in another service."
+Version Control,4 - Using other peoples code,Merge Conflicts & PRs,Resolving overlapping code changes and submitting Pull Requests for review.
+Data Management,4 - Using other peoples code,Data Schema & JSON,"Designing the ""Map"" of your data and communicating it via JSON format."
+UI/UX & Design,5 - From design to implementation,Component Thinking,Moving from Figma layers to reusable React components and Lucide Icons.
+Software Engineering,5 - From design to implementation,Separation of Concerns,"Decoupling the UI (Tailwind), the Logic (TypeScript), and the Structure (React)."
+UI/UX & Design,5 - From design to implementation,Design Tokens,Mapping variables to CSS Variables or Tailwind Themes (JSON configuration).
+Software Engineering,5 - From design to implementation,Technical Debt,"Understanding the long-term cost of choosing ""hacky"" code solutions over clean architecture."
+Software Engineering,5 - From design to implementation,Spec-Driven Dev (SDD),Writing technical Markdown (.md) specs to guide AI agents through complex builds.
+Data Management,5 - From design to implementation,JSON,"JavaScript Object Notation: The standard lightweight, text-based format used to structure and exchange data between a server and a web app."
+Dev Tools,5 - From design to implementation,Environment Variables,.env Files: Local files used to store sensitive configuration data (like API keys) so they aren't hard-coded into the public source code.
+Software Engineering,5 - From design to implementation,Markdown (.md),"A lightweight markup language with plain-text formatting syntax, used for technical documentation and AI ""Specs."""
+Data Management,5 - From design to implementation,Data Schema,"The formal blueprint or ""map"" that defines how data is structured, stored, and related within a database."
+Data Management,5 - From design to implementation,CRUD,"Create, Read, Update, Delete: The four essential operations required to manage persistent data in any application."
+Web Development,5 - From design to implementation,Headless CMS,"A back-end-only content management system that provides content as data via an API, decoupled from the visual ""head."""
+Web Development,5 - From design to implementation,Webhooks,"""Reverse APIs"" that allow one application to send real-time data to another as soon as a specific event occurs."
+DevOps,5 - From design to implementation,CI/CD,"Continuous Integration/Continuous Deployment: Automated pipelines that test, build, and ship code updates to production."
+Version Control,5 - From design to implementation,Merge Conflicts,"A Git event occurring when two sets of changes are made to the same line of code, requiring manual reconciliation."
+DevOps,5 - From design to implementation,Serverless / Edge,Cloud computing models where code runs on-demand in locations physically closer to the user without managing servers.
+Software Engineering,5 - From design to implementation,Boilerplates,"Pre-configured project templates that include a standard tech stack, allowing you to bypass ""empty folder"" setup."
+UI/UX & Design,5 - From design to implementation,UI Libraries,"Collections of pre-built, accessible components (like shadcn/ui or Radix) that can be imported and styled."
+AI Tools,6 - Building applications with LLMs,n8n & LangChain,"Visual automation (n8n) vs programmatic ""Chaining"" (LangChain) for AI workflows."
+Data Management,6 - Building applications with LLMs,Vector DBs & RAG,Using Vector Embeddings to let AI search thousands of documents via RAG.
+DevOps,6 - Building applications with LLMs,Vercel / Netlify,"""One-click"" Deployment to turn a local project into a live URL."
+Web Development,6 - Building applications with LLMs,Supabase (Backend),"A ""Low-code"" PostgreSQL database with built-in Auth and CRUD functions."
+DevOps,6 - Building applications with LLMs,Docker & Containers,Packaging an app to ensure it runs identically on any machine via Containers.
+DevOps,6 - Building applications with LLMs,CI/CD & Serverless,"Automating testing/shipping and running code on the ""Edge"" without server management."
+AI Concepts,6 - Building applications with LLMs,Latent Space,"The multi-dimensional mathematical ""map"" where an AI model clusters related concepts based on their semantic similarity."
+AI Concepts,6 - Building applications with LLMs,Temperature,"A hyperparameter that controls the randomness of AI output; low is deterministic/precise, high is creative/varied."
