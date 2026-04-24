@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.next/
+out/
+
+# System
+.DS_Store
+*.DS_Store
+
+# Environment
+.env
+.env.local
+
+# The mario game is a personal project for each participant.
+# It lives outside the course repo's tracking so git pull never overwrites local changes.
+# On first setup, copy sessions/mario-game/ to your own workspace and run npm install.
+sessions/mario-game/

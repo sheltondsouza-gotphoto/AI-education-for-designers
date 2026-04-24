@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vote · GotPhoto AI Workshop</title>
+  <meta name="description" content="Vote for the topics you want to cover in the next GotPhoto AI Workshop sessions.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            navy: {
+              950: '#080C1C',
+              900: '#0D1129',
+              800: '#111629',
+              700: '#1B2251',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    .vote-btn {
+      transition: transform 100ms ease-out, background-color 150ms ease;
+    }
+    .vote-btn:active {
+      transform: scale(0.92);
+    }
+    .vote-btn.voted {
+      background-color: rgba(91, 127, 255, 0.18);
+      border-color: rgba(91, 127, 255, 0.5);
+    }
+    .card {
+      transition: transform 150ms ease-out;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .vote-btn, .card { transition: none; }
+    }
+  </style>
+</head>
+
+<body class="bg-navy-900 text-white font-sans antialiased min-h-dvh">
+
+  <!-- ══════════════════════════════════════════
+       HEADER
+  ══════════════════════════════════════════ -->
+  <header class="sticky top-0 z-40 border-b border-white/[0.07] bg-navy-900/90 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <span class="text-sm font-semibold text-white tracking-tight">GotPhoto AI Workshop</span>
+        <span class="h-4 w-px bg-white/15 hidden sm:block" aria-hidden="true"></span>
+        <span class="text-sm text-slate-400 font-medium hidden sm:block">Topic Vote</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span id="total-votes" class="text-xs text-slate-500"></span>
+        <button
+          onclick="sortByVotes()"
+          class="text-xs font-medium text-slate-400 hover:text-white border border-white/10 hover:border-white/25 px-3 py-1.5 rounded-lg transition-colors">
+          Sort by votes
+        </button>
+        <button
+          onclick="resetAll()"
+          class="text-xs font-medium text-slate-600 hover:text-slate-400 px-2 py-1.5 rounded-lg transition-colors"
+          title="Reset all votes">
+          Reset
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6">
+
+    <!-- HERO -->
+    <section class="pt-14 pb-10">
+      <p class="text-xs font-bold tracking-[0.25em] uppercase text-[#5B7FFF] mb-4">Sessions 3 – 6</p>
+      <h1 class="text-4xl sm:text-5xl font-bold leading-tight tracking-tight text-white mb-4 max-w-2xl">
+        What do you want to learn next?
+      </h1>
+      <p class="text-base text-slate-400 leading-relaxed max-w-xl">
+        Tap 👍 on any topic that sounds useful or interesting. Your votes shape the next sessions.
+      </p>
+    </section>
+
+    <!-- FILTER TABS -->
+    <div id="filter-tabs" class="flex flex-wrap gap-2 mb-8"></div>
+
+    <!-- CARDS GRID -->
+    <div id="cards-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pb-20"></div>
+
+  </main>
+
+  <script>
+    // ─── DATA ────────────────────────────────────────────────────────────────
+
+    const TOPICS = [
+      // AI Concepts
+      { id: 'llm-think',       name: 'How LLMs "Think"',         cat: 'AI Concepts',       desc: 'Tokenization, probability, and the difference between pattern-matching and genuine reasoning.' },
+      { id: 'model-tiering',   name: 'Model Tiering',            cat: 'AI Concepts',       desc: 'When to use Reasoning models (Opus, o1) vs Fast models vs Local models like Llama 3.' },
+      { id: 'context-windows', name: 'Context Windows',          cat: 'AI Concepts',       desc: 'Managing the finite "active memory" of a conversation to prevent context loss or hallucination.' },
+      { id: 'agent-stack',     name: 'The AI "Agent" Stack',     cat: 'AI Concepts',       desc: 'How an Agent is built: LLM + Tools (Terminal/Browser) + Context (Project Files/Data).' },
+      { id: 'cot',             name: 'Chain of Thought (CoT)',   cat: 'AI Concepts',       desc: 'Making the model output its reasoning steps before the final answer to improve accuracy.' },
+      { id: 'context-first',   name: '"Context First" Prompting',cat: 'AI Concepts',       desc: 'Defining the Stack, User, and Goal in a system prompt before asking Claude to write any code.' },
+      { id: 'temperature',     name: 'Temperature',              cat: 'AI Concepts',       desc: 'The setting that controls AI output randomness — low is precise and deterministic, high is creative.' },
+
+      // AI Tools
+      { id: 'cursor',          name: 'Cursor',                   cat: 'AI Tools',          desc: 'AI-native IDE with real-time inline code assistance and a multi-file "Composer" mode.' },
+      { id: 'stitch',          name: 'Google Stitch',            cat: 'AI Tools',          desc: 'AI "Vibe Design" canvas that generates UI and code from voice, text, or images.' },
+      { id: 'v0dev',           name: 'v0.dev',                   cat: 'AI Tools',          desc: 'Generates polished React and Tailwind components from prompts or screenshots.' },
+
+      // Version Control
+      { id: 'merge-conflicts', name: 'Merge Conflicts & PRs',   cat: 'Version Control',   desc: 'Resolving overlapping code changes and submitting Pull Requests for team review.' },
+
+      // Dev Tools
+      { id: 'env-vars',        name: 'Environment Variables',   cat: 'Dev Tools',         desc: '.env files for storing secret API keys and config away from your source code.' },
+      { id: 'python',          name: 'Python (for Data)',        cat: 'Dev Tools',         desc: 'Using Python for data analysis, visualisation (Recharts/D3), and automation scripts.' },
+
+      // Web & Data
+      { id: 'webhooks',        name: 'Webhooks',                 cat: 'Web & Data',        desc: 'Real-time "pings" that notify your app when an event happens in another service (e.g. Stripe, Figma).' },
+      { id: 'data-schema',     name: 'Data Schema & JSON',       cat: 'Web & Data',        desc: 'Designing the "map" of your data and communicating it between services via JSON.' },
+      { id: 'crud',            name: 'CRUD',                     cat: 'Web & Data',        desc: 'Create, Read, Update, Delete — the four operations that underpin every data-driven app.' },
+      { id: 'headless-cms',    name: 'Headless CMS',             cat: 'Web & Data',        desc: 'A backend-only content system that delivers content as data via API, decoupled from the frontend.' },
+      { id: 'supabase',        name: 'Supabase',                 cat: 'Web & Data',        desc: 'Low-code PostgreSQL database with built-in Auth, storage, and CRUD — the Firebase alternative.' },
+
+      // Design to Code
+      { id: 'component-think', name: 'Component Thinking',       cat: 'Design to Code',    desc: 'Translating Figma layers into reusable React components with Lucide Icons.' },
+      { id: 'separation',      name: 'Separation of Concerns',   cat: 'Design to Code',    desc: 'Cleanly decoupling UI (Tailwind), Logic (TypeScript), and Structure (React).' },
+      { id: 'design-tokens',   name: 'Design Tokens',            cat: 'Design to Code',    desc: 'Mapping Figma variables to CSS Variables or a Tailwind config file (JSON).' },
+      { id: 'tech-debt',       name: 'Technical Debt',           cat: 'Design to Code',    desc: 'The long-term cost of "hacky" shortcuts vs clean architecture — how to spot and avoid it.' },
+      { id: 'sdd',             name: 'Spec-Driven Dev (SDD)',    cat: 'Design to Code',    desc: 'Writing Markdown specs to guide AI agents through complex, multi-file builds.' },
+      { id: 'ui-libs',         name: 'UI Libraries',             cat: 'Design to Code',    desc: 'Pre-built accessible component collections like shadcn/ui or Radix — import and style.' },
+
+      // DevOps
+      { id: 'vercel',          name: 'Vercel / Netlify',         cat: 'DevOps',            desc: '"One-click" deployment that turns a local project into a live public URL.' },
+      { id: 'cicd',            name: 'CI/CD',                    cat: 'DevOps',            desc: 'Automated pipelines that test, build, and ship code to production on every push.' },
+      { id: 'serverless',      name: 'Serverless / Edge',        cat: 'DevOps',            desc: 'Code that runs on-demand, closer to the user, without managing a server.' },
+      { id: 'docker',          name: 'Docker & Containers',      cat: 'DevOps',            desc: 'Packaging an app and its dependencies so it runs identically on any machine.' },
+      { id: 'boilerplates',    name: 'Boilerplates',             cat: 'DevOps',            desc: 'Pre-configured project templates that skip the empty-folder setup entirely.' },
+
+      // Building with LLMs
+      { id: 'n8n',             name: 'n8n & LangChain',          cat: 'Building with LLMs',desc: 'Visual automation (n8n) vs programmatic AI chaining (LangChain) for building workflows.' },
+      { id: 'rag',             name: 'Vector DBs & RAG',         cat: 'Building with LLMs',desc: 'Vector embeddings that let AI search thousands of documents — Retrieval-Augmented Generation.' },
+    ];
+
+    const CAT_COLORS = {
+      'AI Concepts':       { accent: '#A78BFA', bg: 'rgba(167,139,250,0.08)',  border: 'rgba(167,139,250,0.18)' },
+      'AI Tools':          { accent: '#A78BFA', bg: 'rgba(167,139,250,0.08)',  border: 'rgba(167,139,250,0.18)' },
+      'Version Control':   { accent: '#FB923C', bg: 'rgba(251,146,60,0.08)',   border: 'rgba(251,146,60,0.18)'  },
+      'Dev Tools':         { accent: '#5B7FFF', bg: 'rgba(91,127,255,0.08)',   border: 'rgba(91,127,255,0.18)'  },
+      'Web & Data':        { accent: '#34D399', bg: 'rgba(52,211,153,0.08)',   border: 'rgba(52,211,153,0.18)'  },
+      'Design to Code':    { accent: '#F472B6', bg: 'rgba(244,114,182,0.08)',  border: 'rgba(244,114,182,0.18)' },
+      'DevOps':            { accent: '#FBBF24', bg: 'rgba(251,191,36,0.08)',   border: 'rgba(251,191,36,0.18)'  },
+      'Building with LLMs':{ accent: '#A78BFA', bg: 'rgba(167,139,250,0.08)', border: 'rgba(167,139,250,0.18)' },
+    };
+
+    const STORAGE_KEY = 'gotphoto-votes-v1';
+    const SCRIPT_URL  = 'https://script.google.com/macros/s/AKfycbxuH6xp254hvOjnci_h2vtEHeNFRRacNWqDQ6D43WFcxiKeb9ACvqNs3e_f8Bd-2fmh/exec';
+
+    // ─── STATE ───────────────────────────────────────────────────────────────
+
+    let votes = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    let activeFilter = 'All';
+    let sorted = false;
+
+    function saveVotes() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(votes));
+    }
+
+    function getVote(id) {
+      return votes[id] || 0;
+    }
+
+    // ─── REMOTE SYNC ─────────────────────────────────────────────────────────
+
+    async function loadVotes() {
+      if (!SCRIPT_URL || SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') return;
+      try {
+        const res  = await fetch(`${SCRIPT_URL}?action=read`);
+        const data = await res.json();
+        if (data.ok && data.votes) {
+          Object.assign(votes, data.votes);
+          saveVotes();
+          renderAll();
+          updateTotal();
+        }
+      } catch (_) {}
+    }
+
+    // ─── VOTE ────────────────────────────────────────────────────────────────
+
+    async function vote(id) {
+      votes[id] = (votes[id] || 0) + 1;
+      saveVotes();
+      renderCount(id);
+      updateTotal();
+
+      if (!SCRIPT_URL || SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') return;
+      try {
+        const res  = await fetch(`${SCRIPT_URL}?action=vote&id=${encodeURIComponent(id)}`);
+        const data = await res.json();
+        if (data.ok && typeof data.count === 'number') {
+          votes[id] = data.count;
+          saveVotes();
+          renderCount(id);
+          updateTotal();
+        }
+      } catch (_) {}
+    }
+
+    function renderCount(id) {
+      const btn = document.getElementById('btn-' + id);
+      const count = document.getElementById('count-' + id);
+      if (!btn || !count) return;
+      const v = getVote(id);
+      count.textContent = v;
+      btn.classList.toggle('voted', v > 0);
+    }
+
+    // ─── FILTER ──────────────────────────────────────────────────────────────
+
+    const CATEGORIES = ['All', ...Object.keys(CAT_COLORS)];
+
+    function setFilter(cat) {
+      activeFilter = cat;
+      sorted = false;
+      renderAll();
+      document.querySelectorAll('.filter-tab').forEach(t => {
+        const active = t.dataset.cat === cat;
+        t.classList.toggle('bg-[#5B7FFF]', active);
+        t.classList.toggle('text-white', active);
+        t.classList.toggle('border-[#5B7FFF]', active);
+        t.classList.toggle('border-white/10', !active);
+        t.classList.toggle('text-slate-400', !active);
+      });
+    }
+
+    function sortByVotes() {
+      sorted = true;
+      renderAll();
+    }
+
+    // ─── RENDER ──────────────────────────────────────────────────────────────
+
+    function renderFilters() {
+      const el = document.getElementById('filter-tabs');
+      el.innerHTML = CATEGORIES.map(cat => `
+        <button
+          class="filter-tab text-xs font-medium px-3 py-1.5 rounded-lg border transition-colors ${cat === 'All' ? 'bg-[#5B7FFF] text-white border-[#5B7FFF]' : 'text-slate-400 border-white/10 hover:border-white/25 hover:text-white'}"
+          data-cat="${cat}"
+          onclick="setFilter('${cat}')">
+          ${cat}
+        </button>
+      `).join('');
+    }
+
+    function renderAll() {
+      let topics = TOPICS.filter(t => activeFilter === 'All' || t.cat === activeFilter);
+      if (sorted) {
+        topics = [...topics].sort((a, b) => getVote(b.id) - getVote(a.id));
+      }
+
+      const grid = document.getElementById('cards-grid');
+      grid.innerHTML = topics.map(t => {
+        const c = CAT_COLORS[t.cat];
+        const v = getVote(t.id);
+        return `
+          <article class="card relative bg-navy-700/50 border border-white/[0.07] rounded-xl p-5 pl-6 flex flex-col gap-3 overflow-hidden"
+                   style="border-color: ${c.border}; background: ${c.bg};">
+            <div class="absolute left-0 top-5 bottom-5 w-[3px] rounded-full" style="background:${c.accent}" aria-hidden="true"></div>
+
+            <div>
+              <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-1.5" style="color:${c.accent}">${t.cat}</p>
+              <h3 class="font-semibold text-white text-[15px] leading-snug">${t.name}</h3>
+            </div>
+
+            <p class="text-sm text-slate-400 leading-relaxed flex-1">${t.desc}</p>
+
+            <div class="flex items-center justify-between mt-1">
+              <button
+                id="btn-${t.id}"
+                onclick="vote('${t.id}')"
+                class="vote-btn flex items-center gap-2 border border-white/10 rounded-lg px-3 py-1.5 hover:border-white/25 transition-colors select-none ${v > 0 ? 'voted' : ''}"
+                aria-label="Vote for ${t.name}">
+                <span class="text-base leading-none">👍</span>
+                <span id="count-${t.id}" class="text-sm font-semibold text-white tabular-nums">${v}</span>
+              </button>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function updateTotal() {
+      const total = Object.values(votes).reduce((a, b) => a + b, 0);
+      const el = document.getElementById('total-votes');
+      el.textContent = total > 0 ? `${total} vote${total === 1 ? '' : 's'} cast` : '';
+    }
+
+    function resetAll() {
+      if (!confirm('Reset all votes?')) return;
+      votes = {};
+      saveVotes();
+      renderAll();
+      updateTotal();
+    }
+
+    // ─── INIT ────────────────────────────────────────────────────────────────
+
+    renderFilters();
+    renderAll();
+    updateTotal();
+    loadVotes();
+  </script>
+
+</body>
+</html>
